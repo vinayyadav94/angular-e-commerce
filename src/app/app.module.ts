@@ -11,6 +11,11 @@ import { CustomNavbarComponent } from './components/common/custom-navbar/custom-
 import { AboutComponent } from './components/pages/about/about.component';
 import { FeatureComponent } from './components/pages/feature/feature.component';
 import { CategoryComponent } from './components/pages/category/category.component';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,11 @@ import { CategoryComponent } from './components/pages/category/category.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added,
+    HttpClientModule, StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]

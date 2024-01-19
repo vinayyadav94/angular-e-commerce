@@ -1,1 +1,66 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border shadow-sm">
+                
+                <div class="card-body">
+                    <div class="m-2 text-center">
+                        <img style="width: 250px;" class="img-fluid" src="assets/images/login.svg" alt=""/>
+                    </div>
+                    <h3 class="text-center">Login here!</h3>
+                    <form action="#" 
+                        #loginForm="ngForm"
+                        (ngSubmit)="formSubmit($event, loginForm)"
+                        >
+                        <div class="mb-3 alert alert-danger" *ngIf="!isFormValid">username and password is required to login.</div>
+                        <div class="mb-3 alert alert-danger" *ngIf="isError">{{errorMsg}}</div>
+                        <!-- name field -->
+                        <div class="mb-3">
+                            <label for="email">Username</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                placeholder="Enter your email as your username"
+                                id="email"
+                                name="email"
+                                [(ngModel)]="loginData.email"
+                                required="true"
+                                #emailField="ngModel"
+                                >
+                                <span [hidden]="emailField.valid || !emailField.touched" class="text-danger mt-2">username is required</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password">Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Enter your password"
+                                id="password"
+                                name="password"
+                                [(ngModel)]="loginData.password"
+                                required="true"
+                                #passwordField="ngModel"
+                                >
+                                <span [hidden]="passwordField.valid || !passwordField.touched" class="text-danger mt-2">password is required</span>
+                        </div>
+                        
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <!-- <span class="spinner-border spinner-border-sm" aria-hidden="true" *ngIf="isLoading"></span> -->
+                                <span>Login</span>
+                            </button>
+                            <button class="btn btn-sacondary btn-sm ms-2" type="reset" (click)="reset(loginForm)">Reset</button>
+                        </div>
+                        <div class="text-center">
+                            <p>Forgot password? <a href="#">Click here to reset password!</a></p>
+                        </div>
+                        <div class="text-center">
+                            <p>Don't have an account? <a href="" [routerLink]="['/signup']">Click here to signUp!</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

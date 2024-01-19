@@ -1,1 +1,109 @@
-<p>signup works!</p>
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border shadow-sm">
+                
+                <div class="card-body">
+                    <div class="m-2 text-center">
+                        <img style="width: 250px;" class="img-fluid" src="assets/images/signup.svg" alt=""/>
+                    </div>
+                    <h3 class="text-center">Sign up here!</h3>
+                    <form action="#" 
+                        #signupForm="ngForm"
+                        (ngSubmit)="formSubmit($event, signupForm)">
+                        <div class="mb-3 alert alert-danger" *ngIf="!isFormValid">Please fill in the required field.</div>
+                        <div class="mb-3 alert alert-success" *ngIf="isSuccess">The user has been registered successfully.</div>
+                        <div class="mb-3 alert alert-danger" *ngIf="isError">something went wrong, please try again!</div>
+                        <!-- name field -->
+                        <div class="mb-3">
+                            <label for="name">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter your awesome name"
+                                id="name"
+                                name="name"
+                                [(ngModel)]="user.name"
+                                required="true"
+                                #nameField="ngModel"
+                            />
+                            <span [hidden]="nameField.valid || !nameField.touched" class="text-danger mt-2">username is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Email</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter your email id"
+                                id="email"
+                                name="email"
+                                [(ngModel)]="user.email"
+                                required="true"
+                                #emailField="ngModel"
+                            />
+                            <span [hidden]="emailField.valid || !emailField.touched" class="text-danger mt-2">email is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password">New Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Enter your password you want to create"
+                                id="password"
+                                name="password"
+                                [(ngModel)]="user.password"
+                                required="true"
+                                #passwordField="ngModel"
+                            />
+                            <span [hidden]="passwordField.valid || !passwordField.touched" class="text-danger mt-2">password is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="d-block">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                name="gender"
+                                [value]="'male'"
+                                id="gender1" 
+                                [(ngModel)]="user.gender">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Male
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                name="gender" 
+                                id="gender2"
+                                [value]="'female'"
+                                [(ngModel)]="user.gender">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Female
+                                </label>
+                              </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="about">Tell us something about yourself</label>
+                            <textarea name="about" id="about" rows="3" class="form-control" name="about"
+                            [(ngModel)]="user.about" #aboutField="ngModel" required="true"></textarea>
+                            <span [hidden]="aboutField.valid || !aboutField.touched" class="text-danger mt-2">about yourself is required</span>
+                        </div>
+                        <div class="text-center">
+                            <p>Already have an account? <a href="" [routerLink]="['/login']">Click here to Login!</a></p>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary btn-sm" type="submit" [disabled]="isLoading">
+                                <span class="spinner-border spinner-border-sm" aria-hidden="true" *ngIf="isLoading"></span>
+                                <span *ngIf="!isLoading">Register</span>
+                                <span *ngIf="isLoading">Please wait...</span>
+                            </button>
+                            <button class="btn btn-sacondary btn-sm ms-2" type="reset" (click)="reset(signupForm)">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
