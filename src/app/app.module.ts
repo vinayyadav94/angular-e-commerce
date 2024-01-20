@@ -16,6 +16,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { authReducer } from './store/auth/auth.reducer';
+import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { StoreModule } from '@ngrx/store';
     CustomNavbarComponent,
     AboutComponent,
     FeatureComponent,
-    CategoryComponent
+    CategoryComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { StoreModule } from '@ngrx/store';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added,
-    HttpClientModule, StoreModule.forRoot({}, {})
+    HttpClientModule, 
+    StoreModule.forRoot({auth: authReducer}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]

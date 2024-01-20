@@ -6,37 +6,43 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { FeatureComponent } from './components/pages/feature/feature.component';
 import { CategoryComponent } from './components/pages/category/category.component';
+import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    title: 'Electronic Store: Login'
+    title: 'eStore: Login'
   },
   {
     path: 'signup',
     component: SignupComponent,
-    title: 'Electronic Store: Sign Up'
+    title: 'eStore: Sign Up'
   },
   {
     path: 'home',
     component: HomeComponent,
-    title: 'Electronic Store: Home'
+    title: 'eStore: Home'
   },
   {
     path: 'about',
     component: AboutComponent,
-    title: 'Electronic Store: About'
+    title: 'eStore: About'
   },
   {
     path: 'feature',
     component: FeatureComponent,
-    title: 'Electronic Store: Features'
+    title: 'eStore: Features'
   },
   {
     path: 'category',
     component: CategoryComponent,
-    title: 'Electronic Store: Categories'
+    title: 'eStore: Categories'
+  },
+  {
+    path: 'user',
+    component: DashboardComponent,
+    title: 'eStore: Dashboard'
   }
 ];
 
