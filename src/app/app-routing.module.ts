@@ -7,6 +7,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { FeatureComponent } from './components/pages/feature/feature.component';
 import { CategoryComponent } from './components/pages/category/category.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
+import { normalUserGuard } from './guards/normal-user.guard';
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
   {
     path: 'user',
     component: DashboardComponent,
-    title: 'eStore: Dashboard'
+    title: 'eStore: Dashboard',
+    canActivate: [normalUserGuard]
   }
 ];
 

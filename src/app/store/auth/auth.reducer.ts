@@ -1,12 +1,14 @@
 import { createReducer , on} from "@ngrx/store";
 import { loginResponse } from "src/app/models/loginResponse.model";
 import { removeLoginData, setLoginData } from "./auth.action";
+import { AuthService } from "src/app/services/auth.service";
 
-export const initialState: loginResponse = {
-    jwtToken: '',
-    user: null,
-    login: false
-};
+export const initialState: loginResponse = AuthService.getLoginDataFromLocalStorage() ?
+    AuthService.getLoginDataFromLocalStorage() : {
+        jwtToken: '',
+        user: null,
+        login: false
+    };
 
 export const authReducer = createReducer(initialState, on(setLoginData, (oldState, payload)=>{
     console.log('set login data with reducer', payload);
