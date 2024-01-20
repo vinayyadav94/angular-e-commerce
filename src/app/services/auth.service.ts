@@ -34,6 +34,10 @@ export class AuthService {
   checkLoginAndAdminUser() {
     //check if user is loggedIn and role is admin
   }
+
+  getLoggedInData() {
+    return this.store.select('auth');
+  }
  
   //helper methods for local storage
   saveLoginDataToLocalStorage(loginData: loginResponse) {
