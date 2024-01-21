@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { loginResponse } from 'src/app/models/loginResponse.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { removeLoginData } from 'src/app/store/auth/auth.action';
@@ -12,8 +13,9 @@ import { removeLoginData } from 'src/app/store/auth/auth.action';
 })
 export class CustomNavbarComponent {
 
-  collapse =true;
+  collapse = true;
   loginData?: loginResponse;
+  isAdmin?: Observable<boolean>;
 
   constructor(private authService: AuthService,
               private store: Store<{auth: loginResponse}>,
@@ -22,9 +24,9 @@ export class CustomNavbarComponent {
     this.authService.getLoggedInData().subscribe({
       next: loggedInData => {
         this.loginData = loggedInData;
-        console.log('******',this.loginData)
       }
     });
+    this.isAdmin = this.authService.checkLoginAndAdminUser();
   }
   
   toggle() {

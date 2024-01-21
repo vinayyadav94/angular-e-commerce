@@ -33,6 +33,15 @@ export class AuthService {
 
   checkLoginAndAdminUser() {
     //check if user is loggedIn and role is admin
+    return this.store.select('auth').pipe(map(value => {
+
+      const isAdminRole = value.user?.roles.find(
+        (role) => role.roleName === environment.ROLE_ADMIN_NAME && role.roleId === environment.ROLE_ADMIN_ID
+      );
+
+      if( value.login && value.jwtToken !== '' && value.user && isAdminRole) return true;
+      else return false;
+    }))
   }
 
   getLoggedInData() {

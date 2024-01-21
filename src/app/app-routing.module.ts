@@ -8,6 +8,8 @@ import { FeatureComponent } from './components/pages/feature/feature.component';
 import { CategoryComponent } from './components/pages/category/category.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 import { normalUserGuard } from './guards/normal-user.guard';
+import { DashboardComponent as AdminDashboard } from './components/admin/dashboard/dashboard.component';
+import { adminUserGuard } from './guards/admin-user.guard';
 
 const routes: Routes = [
   {
@@ -45,6 +47,12 @@ const routes: Routes = [
     component: DashboardComponent,
     title: 'eStore: Dashboard',
     canActivate: [normalUserGuard]
+  },
+  {
+    path: 'admin',
+    component: AdminDashboard,
+    title: 'eStore: Admin Dashboard',
+    canActivate: [adminUserGuard]
   }
 ];
 

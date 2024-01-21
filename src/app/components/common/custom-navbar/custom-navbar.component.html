@@ -55,8 +55,11 @@
             </li>
         </ul>
         <ul class="navbar-nav" *ngIf="loginData?.login">
+          <li class="nav-item" *ngIf="isAdmin|async">
+            <button class="nav-link" style="cursor: pointer;" routerLink="/admin">Admin Dashboard</button>
+        </li>
           <li class="nav-item">
-            <p class="nav-link" >{{loginData?.user?.name}}</p>
+            <p class="nav-link" style="cursor: pointer;" routerLink="/user">{{loginData?.user?.name}}</p>
         </li>
         <li class="nav-item">
             <a class="nav-link" style="cursor: pointer;" (click)="logout()">Logout</a>
