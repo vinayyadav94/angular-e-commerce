@@ -14,7 +14,7 @@ import { CategoryComponent } from './components/pages/category/category.componen
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/auth/auth.reducer';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
@@ -28,6 +28,7 @@ import { DashboardComponent as AdminDashboardComponent } from './components/admi
 //third party library for using icons
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { IconHome, IconCategoryPlus, IconCategoryFilled, IconShoppingCartOff, IconShoppingCart, IconTruckDelivery, IconUsers, IconLogout } from 'angular-tabler-icons/icons';
+import { JwtInterceptor } from './services/jwtInterceptor';
 
 const icons = {
   IconHome,
@@ -70,7 +71,13 @@ const icons = {
     StoreModule.forRoot({auth: authReducer}, {}),
     TablerIconsModule.pick(icons)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

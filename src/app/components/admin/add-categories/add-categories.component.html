@@ -1,1 +1,66 @@
-<p>add-categories works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="mb-0">Add Category</h3>
+          </div>
+          <div class="card-body">
+            <form action="#"
+                #addCategoryForm="ngForm" 
+                (ngSubmit)="submitForm($event)">
+                <div class="mb-3 alert alert-danger" *ngIf="!isFormValid">Title or Category is misssing values.</div>
+                <div class="mb-3 alert alert-danger" *ngIf="isError">{{errorMsg}}</div>
+                <div class="mb-3 alert alert-success" *ngIf="isSuccess">The new category has been added successfully.</div>
+              <!-- Category Title -->
+              <div class="form-group mb-2">
+                <label for="categoryTitle">Category Title</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="categoryTitle" 
+                    placeholder="Enter category title" 
+                    required="true"
+                    name="title"
+                    [(ngModel)]="category.title"
+                    >
+              </div>
+  
+              <!-- Description -->
+              <div class="form-group mb-2">
+                <label for="description">Description</label>
+                <textarea 
+                    class="form-control" 
+                    id="description" 
+                    rows="3" 
+                    placeholder="Enter category description" 
+                    required="true"
+                    name="description"
+                    [(ngModel)]="category.description"
+                    >
+                </textarea>
+              </div>
+  
+              <!-- Cover Image -->
+              <div class="form-group mb-2">
+                <label for="coverImage">Cover Image URL</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="coverImage" 
+                    placeholder="Enter cover image URL"
+                    name="coverImage"
+                    [(ngModel)]="category.coverImage">
+              </div>
+  
+              <!-- Buttons -->
+              <div class="form-group mb-2">
+                <button type="submit" class="btn btn-primary">Add Category</button>
+                <span style="margin-left: 10px;"><button  class="btn btn-secondary" (click)="reset(addCategoryForm)">Reset Form</button></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
