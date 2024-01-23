@@ -1,0 +1,8 @@
+.nav-link:hover{
+    background-color: black;
+    color: white;
+}
+.nav-link.active{
+    background-color: black;
+    color: white;
+}

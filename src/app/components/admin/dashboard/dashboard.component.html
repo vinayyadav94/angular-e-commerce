@@ -1,1 +1,41 @@
-<p>Admin dashboard works!</p>
+<div class="">
+    <div class="row">
+
+        <!-- sidebar -->
+        <div class="col-md-2">
+
+            <nav class="navbar-expand-lg bg-light p-2 pt-5" style="height: 90vh;">
+                
+                  <ul class="navbar-nav flex-column" style="height: 90%;">
+                    <li class="nav-item" *ngFor="let menu of adminMenus">
+                      <a class="nav-link" href="#!" [routerLink]="[menu.link]" routerLinkActive="active">
+                        <i-tabler [name]="menu.icon"></i-tabler>
+                        <span class="ms-1">{{menu.title}}</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!" routerLinkActive="active">
+                          <i-tabler name="logout"></i-tabler>
+                          <span class="ms-1">Logout</span>
+                      </a>
+                      </li>
+                  </ul>
+                  <ul class="navbar-nav flex-column" style="height: 10%;">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#!" routerLinkActive="active">
+                        <i-tabler name="truck-delivery"></i-tabler>
+                        <span class="ms-1">Feedback</span>
+                    </a>
+                    </li>
+                  </ul>
+
+              </nav>
+              
+        </div>
+
+        <!-- main content -->
+        <div class="col-md-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

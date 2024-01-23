@@ -18,6 +18,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/auth/auth.reducer';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
+import { AddProductComponent } from './components/admin/add-product/add-product.component';
+import { ViewProductComponent } from './components/admin/view-product/view-product.component';
+import { AddCategoriesComponent } from './components/admin/add-categories/add-categories.component';
+import { ViewCategoriesComponent } from './components/admin/view-categories/view-categories.component';
+import { ViewOrdersComponent } from './components/admin/view-orders/view-orders.component';
+import { ViewUsersComponent } from './components/admin/view-users/view-users.component';
+import { DashboardComponent as AdminDashboardComponent } from './components/admin/dashboard/dashboard.component';
+//third party library for using icons
+import { TablerIconsModule } from 'angular-tabler-icons';
+import { IconHome, IconCategoryPlus, IconCategoryFilled, IconShoppingCartOff, IconShoppingCart, IconTruckDelivery, IconUsers, IconLogout } from 'angular-tabler-icons/icons';
+
+const icons = {
+  IconHome,
+  IconCategoryPlus,
+  IconCategoryFilled,
+  IconShoppingCartOff,
+  IconShoppingCart,
+  IconTruckDelivery,
+  IconUsers,
+  IconLogout
+};
 
 @NgModule({
   declarations: [
@@ -29,7 +50,14 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
     AboutComponent,
     FeatureComponent,
     CategoryComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddProductComponent,
+    ViewProductComponent,
+    AddCategoriesComponent,
+    ViewCategoriesComponent,
+    ViewOrdersComponent,
+    ViewUsersComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +67,8 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added,
     HttpClientModule, 
-    StoreModule.forRoot({auth: authReducer}, {})
+    StoreModule.forRoot({auth: authReducer}, {}),
+    TablerIconsModule.pick(icons)
   ],
   providers: [],
   bootstrap: [AppComponent]
