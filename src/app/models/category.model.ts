@@ -8,3 +8,12 @@ export class Category {
     ) {}
 
 }
+
+export interface CategoryResponse {
+    content: Category[],
+    lastPage: boolean,
+    pageNumber: number,
+    pageSize: number,
+    totalElements: number,
+    totalPages: number
+}

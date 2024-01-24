@@ -29,6 +29,7 @@ import { DashboardComponent as AdminDashboardComponent } from './components/admi
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { IconHome, IconCategoryPlus, IconCategoryFilled, IconShoppingCartOff, IconShoppingCart, IconTruckDelivery, IconUsers, IconLogout } from 'angular-tabler-icons/icons';
 import { JwtInterceptor } from './services/jwtInterceptor';
+import { SingleCategoryViewComponent } from './components/pages/single-category-view/single-category-view.component';
 
 const icons = {
   IconHome,
@@ -58,7 +59,8 @@ const icons = {
     ViewCategoriesComponent,
     ViewOrdersComponent,
     ViewUsersComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    SingleCategoryViewComponent
   ],
   imports: [
     BrowserModule,

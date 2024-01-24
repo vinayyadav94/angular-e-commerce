@@ -1,1 +1,9 @@
-<p>view-categories works!</p>
+<!-- category-list -->
+<div class="container mt-3">
+    <!-- <h2 class="text-center mb-4">Category List</h2> -->
+    <div class="row">
+        <div *ngFor="let c of categories" class="col-md-4 mb-4">
+            <app-single-category-view [category]="c"></app-single-category-view>
+        </div>
+    </div>
+</div>
