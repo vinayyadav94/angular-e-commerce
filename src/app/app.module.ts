@@ -68,7 +68,11 @@ const icons = {
     NgbModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), // ToastrModule added,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }), // ToastrModule added,
     HttpClientModule, 
     StoreModule.forRoot({auth: authReducer}, {}),
     TablerIconsModule.pick(icons)

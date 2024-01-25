@@ -17,4 +17,13 @@ export class CategoryService {
   getCategories() {
     return this.http.get<CategoryResponse>(`${environment.baseUrl}/categories?pageSize=${environment.MAX_PAGE_SIZE}`)
   }
+
+  deleteCategory(categoryId: string) {
+    return this.http.delete(`${environment.baseUrl}/categories/${categoryId}`);
+  }
+
+  updateCategory(category: Category) {
+    return this.http.put<Category>(`${environment.baseUrl}/categories/${category.categoryId}`, 
+    category);
+  }
 }

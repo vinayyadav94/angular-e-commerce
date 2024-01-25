@@ -3,7 +3,79 @@
     <!-- <h2 class="text-center mb-4">Category List</h2> -->
     <div class="row">
         <div *ngFor="let c of categories" class="col-md-4 mb-4">
-            <app-single-category-view [category]="c"></app-single-category-view>
+            <app-single-category-view [category]="c" (click)="open(content, c)"></app-single-category-view>
         </div>
     </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">{{selectedCategory?.title}}</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <!-- div to show details -->
+            <div class="view" *ngIf="!updateView">
+                <div class="image-container">
+                    <img class="img-fluid modal-img" [src]="selectedCategory?.coverImage" alt=""/>
+                </div>
+                <p class="mt-2">{{selectedCategory?.description}}</p>
+            </div>
+            <!-- div to update details -->
+            <div class="update" *ngIf="updateView">
+                <form>
+                    <div class="mb-3">
+                      <label for="categoryTitle" class="form-label">Category Title</label>
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        id="categoryTitle" 
+                        placeholder="Enter category title" 
+                        required
+                        name="title"
+                        [(ngModel)]="selectedCategory!.title">
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryDescription" class="form-label">Description</label>
+                      <textarea 
+                        class="form-control" 
+                        id="categoryDescription" 
+                        rows="3" 
+                        placeholder="Enter category description" 
+                        required
+                        name="description"
+                        [(ngModel)]="selectedCategory!.description">
+                        </textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="coverImage" class="form-label">Cover Image URL</label>
+                      <div class="update-image-view text-center mb-2">
+                        <img
+                            [src]="selectedCategory?.coverImage"
+                            alt="cover-image"
+                            style="height: 150px; width: 250px;"
+                        />
+                      </div>
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        id="coverImage" 
+                        placeholder="Enter cover image URL"
+                        name="coverImage"
+                        [(ngModel)]="selectedCategory!.coverImage">
+                    </div>
+                    <div class="d-grid gap-2 text-center row">
+                      <button type="submit" class="btn btn-success" (click)="saveSelectedCategory()">Save</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" (click)="toggleUpdateView()">Update</button>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteCategory(selectedCategory)">Delete</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+        </div>
+    </ng-template>
+    
+    <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+
 </div>
