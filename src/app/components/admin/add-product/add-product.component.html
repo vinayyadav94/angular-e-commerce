@@ -1,1 +1,115 @@
-<p>add-product works!</p>
+<div class="container mt-2 bg-light">
+    <div class="row justify-content-center">
+    <div class="col-md-10">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-2">Add Product</h2>
+        <form (ngSubmit)="onSubmit($event)">
+          <div class="mb-2">
+            <label for="productTitle" class="form-label">Title</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="productTitle"
+                placeholder="Enter product title" 
+                name="productTitle"
+                [(ngModel)]="product.title" 
+                required>
+          </div>
+          <div class="mb-2">
+            <label for="productDescription" class="form-label">Description</label>
+            <!-- <textarea 
+                class="form-control" 
+                id="productDescription"
+                name="productDescription"
+                [(ngModel)]="product.description" 
+                rows="3" required>
+            </textarea> -->
+            <quill-editor
+                [style]="{height:'150px'}"
+                placeholder="Enter product description"
+                name="description"
+                [(ngModel)]="product.description">
+            </quill-editor>
+          </div>
+          <div class="mb-2">
+            <label for="productQuantity" class="form-label">Quantity</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="productQuantity"
+                name="productQuantity"
+                [(ngModel)]="product.quantity" 
+                required>
+          </div>
+          <div class="mb-2">
+            <label for="productPrice" class="form-label">Price</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="productPrice"
+                name="productPrice" 
+                [(ngModel)]="product.price" 
+                required>
+          </div>
+          <div class="mb-2">
+            <label for="productDiscountedPrice" class="form-label">Discounted Price</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="productDiscountedPrice"
+                name="productDiscountedPrice" 
+                [(ngModel)]="product.discountedPrice">
+          </div>
+          <div class="mb-2 form-check">
+            <input 
+                type="checkbox" 
+                class="form-check-input" 
+                id="live"
+                name="live"
+                [(ngModel)]="product.live">
+            <label class="form-check-label" for="live">Live</label>
+          </div>
+          <div class="mb-2 form-check">
+            <input 
+                type="checkbox" 
+                class="form-check-input" 
+                id="stock"
+                name="stock"
+                [(ngModel)]="product.stock">
+            <label class="form-check-label" for="stock">Stock</label>
+          </div>
+          <div class="mb-2">
+            <label for="categories" class="form-label">Categories</label>
+            <select 
+                class="form-select" 
+                id="categories"  
+                name="categories"
+                [(ngModel)]="product.category"
+                [compareWith]="categoriesCompare">
+              <option [value]="{categoryId:'',title:'',description:'',coverImage:''}" selected disabled> ---select category--- </option>
+              <option *ngFor="let category of categories" [ngValue]="category">{{ category.title }}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="productImageFile" class="form-label">Product Image</label>
+            <div class="text-center my-3" *ngIf="imageData.file">
+                <img [src]="imageData.previewImageUrl" alt="preview product image" style="height: 250px; width: auto;"/>
+            </div>
+            <input 
+                type="file" 
+                class="form-control" 
+                id="productImageFile" 
+                (change)="onFileChange($event)" 
+                accept="image/*">
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Add Product</button>
+            <button type="reset" class="btn btn-secondary" style="margin-left: 20px;" (click)="onReset()">Reset Form</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>

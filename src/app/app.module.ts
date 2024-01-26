@@ -30,6 +30,8 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { IconHome, IconCategoryPlus, IconCategoryFilled, IconShoppingCartOff, IconShoppingCart, IconTruckDelivery, IconUsers, IconLogout } from 'angular-tabler-icons/icons';
 import { JwtInterceptor } from './services/jwtInterceptor';
 import { SingleCategoryViewComponent } from './components/pages/single-category-view/single-category-view.component';
+import { categoryReducer } from './store/category/category.reducers';
+import { QuillModule } from 'ngx-quill';
 
 const icons = {
   IconHome,
@@ -74,8 +76,12 @@ const icons = {
       preventDuplicates: true,
     }), // ToastrModule added,
     HttpClientModule, 
-    StoreModule.forRoot({auth: authReducer}, {}),
-    TablerIconsModule.pick(icons)
+    StoreModule.forRoot({
+      auth: authReducer,
+      cat: categoryReducer
+    }),
+    TablerIconsModule.pick(icons),
+    QuillModule.forRoot()
   ],
   providers: [
     {
