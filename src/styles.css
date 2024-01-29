@@ -4,3 +4,9 @@
 /* body{
     background-color: #f0efef;
 } */
+
+/* global image style*/
+.image-container img{
+    max-height: 250px;
+    width: auto;
+}

@@ -78,7 +78,18 @@ export class AddProductComponent implements OnInit {
 
     if(this.product.category.categoryId === ''){
       //add product without category
-      this.productService.createProduct(this.product).subscribe({
+      const productWithoutCategoryParams = {
+        productId: '',
+        title: this.product.title,
+        description: this.product.description,
+        quantity: this.product.quantity,
+        price: this.product.price,
+        discountedPrice: this.product.discountedPrice,
+        live: this.product.live,
+        stock: this.product.stock,
+        category: null
+      }
+      this.productService.createProduct(productWithoutCategoryParams).subscribe({
         next: (data) => {
           console.log(data);
           this.toastr.success('product created. The product id is' + data.productId);

@@ -32,6 +32,7 @@ import { JwtInterceptor } from './services/jwtInterceptor';
 import { SingleCategoryViewComponent } from './components/pages/single-category-view/single-category-view.component';
 import { categoryReducer } from './store/category/category.reducers';
 import { QuillModule } from 'ngx-quill';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 const icons = {
   IconHome,
@@ -81,7 +82,8 @@ const icons = {
       cat: categoryReducer
     }),
     TablerIconsModule.pick(icons),
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    SweetAlert2Module.forRoot({})
   ],
   providers: [
     {
