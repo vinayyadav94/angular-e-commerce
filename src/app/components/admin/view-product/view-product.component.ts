@@ -16,9 +16,12 @@ import { setCategoryData } from 'src/app/store/category/category.actions';
 export class ViewProductComponent implements OnInit {
 
   productsResponse?: ProductsResponse;
+  previousProductsResponse?: ProductsResponse;
   product?: Product;
   update = false;
   categories: Category[] = [];
+  searchQuery = '';
+  searchMode = false;
 
   constructor(
     public productService: ProductService,
@@ -33,7 +36,7 @@ export class ViewProductComponent implements OnInit {
   }
 
   loadProducts(pageNumber=0){
-    this.productService.getAllProducts(pageNumber,10,'addedDate','desc').subscribe({
+    this.productService.getAllProducts(pageNumber, 10, 'addedDate', 'desc').subscribe({
       next: productsRes=>{
         this.productsResponse = productsRes;
         console.log(productsRes)
@@ -42,7 +45,11 @@ export class ViewProductComponent implements OnInit {
   }
 
   pageChange(page: number){
-    this.loadProducts(page-1);
+    if(this.searchMode){
+      this.productSearchService(page-1)
+    }else{
+      this.loadProducts(page-1);
+    }
   }
 
   open(content: any, product: Product) {
@@ -173,6 +180,45 @@ export class ViewProductComponent implements OnInit {
           this.toastr.error('Error in updating product category!');
         }
       })
+    }
+  }
+
+  searchProduct(){
+    if(this.searchQuery.trim() === ''){
+      this.toastr.error('search query required');
+      if(this.previousProductsResponse){
+        this.productsResponse = this.previousProductsResponse;
+        this.searchMode = false;
+      }
+      return;
+    }
+    this.productSearchService(0);
+  }
+  productSearchService(
+    pageNumber: number = 0,
+    pageSize: number = 10,
+    sortBy: string = 'title',
+    sortDir: string = 'asc'
+  ){
+    this.productService
+      .searchProduct(this.searchQuery, pageNumber, pageSize, sortBy, sortDir)
+        .subscribe({
+          next: data=>{
+            if(this.searchMode){
+              this.productsResponse = data;
+            }else{
+              this.previousProductsResponse = this.productsResponse;
+              this.productsResponse = data;
+              this.searchMode = true;
+            }
+          }
+        })
+  }
+  restoreOldData(){
+    if(this.searchQuery.trim() == '' && this.previousProductsResponse){
+      this.productsResponse = this.previousProductsResponse;
+      this.previousProductsResponse = undefined;
+      this.searchMode = false;
     }
   }
 

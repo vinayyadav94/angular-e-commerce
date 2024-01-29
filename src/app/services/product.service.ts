@@ -68,4 +68,15 @@ export class ProductService {
     null
     );
   }
+
+  searchProduct(
+    query: string,
+    pageNumber=0, 
+    pageSize=10, 
+    sortBy='title', 
+    sortDir='asc'){
+    return this.http.get<ProductsResponse>(
+      `${environment.baseUrl}/products/search/${query}?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`
+      );
+  }
 }

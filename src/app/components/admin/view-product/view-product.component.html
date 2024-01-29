@@ -3,6 +3,22 @@
         <div class="card shadow-sm border">
             <div class="card-body">
                 <div class="table-responsive">
+                    <div class="input-group search-field-container mb-2">
+                        <input 
+                            type="text" 
+                            name="query" 
+                            class="form-control"
+                            placeholder="Search any product"
+                            id="query"
+                            [(ngModel)]="searchQuery"
+                            (keyup)="restoreOldData()">
+                            <button 
+                                type="button" 
+                                class="btn btn-outline-dark" 
+                                (click)="searchProduct()">
+                                Search
+                            </button>
+                    </div>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
