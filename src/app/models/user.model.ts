@@ -7,6 +7,18 @@ export class User {
         public password: string,
         public gender: string,
         public about: string,
-        public roles: Role[] = []
+        public roles: Role[] = [],
+        public userId: string = '',
+        public imageName: string = ''
     ) {}
+
+}
+
+export interface UsersResponse{
+    lastPage: boolean;
+    pageNumber: number;
+    pageSize: number;
+    totalPages: number;
+    totalElements: number;
+    content: User[];
 }

@@ -17,6 +17,7 @@ import { AddCategoriesComponent } from './components/admin/add-categories/add-ca
 import { ViewCategoriesComponent } from './components/admin/view-categories/view-categories.component';
 import { ViewOrdersComponent } from './components/admin/view-orders/view-orders.component';
 import { ViewUsersComponent } from './components/admin/view-users/view-users.component';
+import { UserComponent } from './components/pages/user/user.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,11 @@ const routes: Routes = [
     path: 'user',
     component: DashboardComponent,
     title: 'eStore: Dashboard',
+    canActivate: [normalUserGuard]
+  },
+  {
+    path: 'profile',
+    component: UserComponent,
     canActivate: [normalUserGuard]
   },
   {

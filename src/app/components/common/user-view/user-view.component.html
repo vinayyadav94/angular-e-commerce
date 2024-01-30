@@ -1,0 +1,52 @@
+<div class="card" *ngIf="user">
+    <div class="card-header">User Information</div>
+    <div class="card-body">
+        <div class="image-container text-center">
+            <img
+                [src]="userService.getUserImageUrl(user.userId)"
+                onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToplStyx8pu0DsUkR-zSI6hAAN-vzcrZF0HA&usqp=CAU'"
+                alt="profile-picture"
+                class="img"/>
+        </div>
+        <h3 class="text-center">{{user.name | uppercase}}</h3>
+        <div class="table-responsive mt-3 text-center">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <td class="fw-bold">USER ID:</td>
+                        <td>{{user.userId}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">NAME:</td>
+                        <td>{{user.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Email Id:</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">GENDER:</td>
+                        <td>{{user.gender}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Role:</td>
+                        <td>
+                            <span *ngFor="let role of user.roles">
+                                <span class="badge rounded-pill ms-2"
+                                    [ngClass]="{
+                                        'text-bg-primary': role.roleName == 'ROLE_NORMAL',
+                                        'text-bg-success': role.roleName == 'ROLE_ADMIN'
+                                    }"
+                                >{{role.roleName}}</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">About:</td>
+                        <td>{{user.about}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

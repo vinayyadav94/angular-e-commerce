@@ -2,6 +2,6 @@ import { User } from "./user.model";
 
 export interface loginResponse {
     jwtToken: string,
-    user: User | null,
+    user: User | undefined,
     login: boolean
 }

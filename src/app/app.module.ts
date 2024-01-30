@@ -33,6 +33,8 @@ import { SingleCategoryViewComponent } from './components/pages/single-category-
 import { categoryReducer } from './store/category/category.reducers';
 import { QuillModule } from 'ngx-quill';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { UserComponent } from './components/pages/user/user.component';
+import { UserViewComponent } from './components/common/user-view/user-view.component';
 
 const icons = {
   IconHome,
@@ -63,7 +65,9 @@ const icons = {
     ViewOrdersComponent,
     ViewUsersComponent,
     AdminDashboardComponent,
-    SingleCategoryViewComponent
+    SingleCategoryViewComponent,
+    UserComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,

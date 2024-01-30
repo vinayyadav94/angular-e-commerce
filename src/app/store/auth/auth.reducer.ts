@@ -6,7 +6,7 @@ import { AuthService } from "src/app/services/auth.service";
 export const initialState: loginResponse = AuthService.getLoginDataFromLocalStorage() ?
     AuthService.getLoginDataFromLocalStorage() : {
         jwtToken: '',
-        user: null,
+        user: undefined,
         login: false
     };
 
@@ -17,7 +17,7 @@ export const authReducer = createReducer(initialState, on(setLoginData, (oldStat
     on(removeLoginData, (state) => {
         return {
             jwtToken: '',
-            user: null,
+            user: undefined,
             login: false
         }
     })
