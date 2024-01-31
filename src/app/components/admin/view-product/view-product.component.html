@@ -15,7 +15,7 @@
                             <button 
                                 type="button" 
                                 class="btn btn-outline-dark" 
-                                (click)="searchProduct()">
+                                (click)="searchProduct($event)">
                                 Search
                             </button>
                     </div>
@@ -253,7 +253,7 @@
                                 <option [value]="{categoryId:'',title:'',description:'',coverImage:''}" selected disabled> ---select category--- </option>
                                 <option *ngFor="let category of categories" [ngValue]="category">{{ category.title }}</option>
                             </select>
-                            <button type="button" class="btn btn-outline-dark" (click)="updateProductCategory()">Save</button>
+                            <button type="button" class="btn btn-outline-dark" (click)="updateProductCategory($event)">Save</button>
                             </div>
                         </td>
                     </tr>
@@ -276,7 +276,7 @@
             *ngIf="update"
             type="button" 
             class="btn btn-outline-success"
-            (click)="updateSubmit()"
+            (click)="updateSubmit($event)"
             >
             Save
         </button>

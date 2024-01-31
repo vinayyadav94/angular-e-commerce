@@ -3,7 +3,14 @@
         <div class="card">
             <div class="card-body">
                 <h4>All Users</h4>
-                <div class="list-group">
+                <div 
+                    class="list-group"
+                    *ngIf="users"
+                    infiniteScroll
+                    [infiniteScrollDistance]="2"
+                    [infiniteScrollThrottle]="0"
+                    (scrolled)="userScrolled()"
+                    >
                     <div 
                         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
                         *ngFor="let user of users?.content"

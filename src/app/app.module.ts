@@ -35,6 +35,7 @@ import { QuillModule } from 'ngx-quill';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { UserComponent } from './components/pages/user/user.component';
 import { UserViewComponent } from './components/common/user-view/user-view.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const icons = {
   IconHome,
@@ -87,7 +88,8 @@ const icons = {
     }),
     TablerIconsModule.pick(icons),
     QuillModule.forRoot(),
-    SweetAlert2Module.forRoot({})
+    SweetAlert2Module.forRoot({}),
+    InfiniteScrollModule
   ],
   providers: [
     {

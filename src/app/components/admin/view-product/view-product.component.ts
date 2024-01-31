@@ -129,7 +129,8 @@ export class ViewProductComponent implements OnInit {
     this.loadCategories();
   }
 
-  updateSubmit(){
+  updateSubmit(event:Event){
+    event.preventDefault();
     //validate data
     if(this.product != null){
       if(this.product.title.trim() === ''){
@@ -166,7 +167,8 @@ export class ViewProductComponent implements OnInit {
     }
   }
 
-  updateProductCategory(){
+  updateProductCategory(event: Event){
+    event.preventDefault();
     if(this.product){
       this.productService.updateCategoryOfProduct(
         this.product.productId, 
@@ -183,7 +185,8 @@ export class ViewProductComponent implements OnInit {
     }
   }
 
-  searchProduct(){
+  searchProduct(event: Event){
+    event.preventDefault();
     if(this.searchQuery.trim() === ''){
       this.toastr.error('search query required');
       if(this.previousProductsResponse){
