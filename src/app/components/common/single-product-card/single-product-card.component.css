@@ -1,0 +1,8 @@
+.image-container img{
+    height: 150px;
+    width: auto;
+}
+
+img:hover{
+    transform: scale(1.15);
+}

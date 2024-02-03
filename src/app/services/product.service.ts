@@ -49,6 +49,18 @@ export class ProductService {
       )
   }
 
+  getProductsOfCategory(
+    categoryId: string,
+    pageNumber=0, 
+    pageSize=10, 
+    sortBy='title', 
+    sortDir='asc'
+  ){
+    return this.http.get<ProductsResponse>(
+      `${environment.baseUrl}/categories/${categoryId}/products?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`
+      )
+  }
+
   getProductImageUrl(productId: string) {
     return `${environment.baseUrl}/products/image/${productId}`;
   }
@@ -78,5 +90,9 @@ export class ProductService {
     return this.http.get<ProductsResponse>(
       `${environment.baseUrl}/products/search/${query}?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`
       );
+  }
+
+  getProductDetail(productId: string){
+    return this.http.get<Product>(`${environment.baseUrl}/products/${productId}`);
   }
 }

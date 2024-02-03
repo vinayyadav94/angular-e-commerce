@@ -1,0 +1,28 @@
+<div class="mb-2" style="position: fixed;">
+    <h6>Product Categories!</h6>
+    <div class="list-group">
+        <a href="" [routerLink]="['/products']" class="list-group-item list-group-item-action">
+            <span>
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTzH3ja3dJqWEIimRPCiqUxot2NX-I-qX6kQ&usqp=CAU" 
+                    style="height: 50px; width: 50px; border-radius: 100px; object-fit: cover;" 
+                    alt="">
+                All Products
+            </span> 
+        </a>
+        <a 
+            href="" 
+            *ngFor="let category of categories" 
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/products', category.categoryId, category.title]"
+            routerLinkActive="active">
+            <span>
+                <img 
+                    [src]="category.coverImage" 
+                    style="height: 50px; width: 50px; border-radius: 100px; object-fit: cover;" 
+                    alt="">
+                {{category.title}}
+            </span>
+        </a>
+    </div>
+</div>

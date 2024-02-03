@@ -18,11 +18,14 @@ import { ViewCategoriesComponent } from './components/admin/view-categories/view
 import { ViewOrdersComponent } from './components/admin/view-orders/view-orders.component';
 import { ViewUsersComponent } from './components/admin/view-users/view-users.component';
 import { UserComponent } from './components/pages/user/user.component';
+import { ProductsStoreComponent } from './components/pages/products-store/products-store.component';
+import { CategoriesStoreComponent } from './components/pages/categories-store/categories-store.component';
+import { StoresProductDetailComponent } from './components/pages/stores-product-detail/stores-product-detail.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'products',
     pathMatch: 'full',
     title: 'eStore: Home'
   },
@@ -37,9 +40,17 @@ const routes: Routes = [
     title: 'eStore: Sign Up'
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    title: 'eStore: Home'
+    path: 'products',
+    component: ProductsStoreComponent,
+    title: 'eStore: All Products'
+  },
+  {
+    path: 'product/:productId',
+    component: StoresProductDetailComponent,
+  },
+  {
+    path: 'products/:categoryId/:categoryTitle',
+    component: CategoriesStoreComponent,
   },
   {
     path: 'about',

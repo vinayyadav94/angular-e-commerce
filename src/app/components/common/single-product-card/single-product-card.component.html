@@ -1,0 +1,27 @@
+<div class="card h-100 shadow-sm border" *ngIf="product">
+    <div class="card-body" [routerLink]="['/product',product.productId]" style="cursor:pointer">
+        <div class="image-container text-center mb-2">
+            <img 
+                [src]="productService.getProductImageUrl(product.productId)"
+                alt="product.title"/>
+        </div>
+        <h6>{{product.title}}</h6>
+</div>
+<div class="row px-3">
+    <p class="fs-6">Price: 
+        <span 
+            class="fw-bold text-muted text-decoration-line-through"
+            >₹{{product.price}}
+        </span>
+        <span class="fw-bold ms-1">₹{{product.discountedPrice}}</span>
+    </p>
+    <button 
+        class="btn mb-2"
+        [ngClass]="{
+            'btn-primary':product.stock,
+            'btn-danger':!product.stock
+            }"
+        >{{product.stock ? 'Add to Cart' : 'Out of Stock'}}
+    </button>
+</div>
+</div>

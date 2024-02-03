@@ -1,0 +1,15 @@
+.image-container img{
+    height: 350px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+.fixed-column{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+.scrollable-column{
+    max-height: 100vh;
+    overflow-y: auto;
+}

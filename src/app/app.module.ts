@@ -36,6 +36,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { UserComponent } from './components/pages/user/user.component';
 import { UserViewComponent } from './components/common/user-view/user-view.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ProductsStoreComponent } from './components/pages/products-store/products-store.component';
+import { SingleProductCardComponent } from './components/common/single-product-card/single-product-card.component';
+import { ProductCategoriesViewComponent } from './components/common/product-categories-view/product-categories-view.component';
+import { CategoriesStoreComponent } from './components/pages/categories-store/categories-store.component';
+import { StoresProductDetailComponent } from './components/pages/stores-product-detail/stores-product-detail.component';
 
 const icons = {
   IconHome,
@@ -68,7 +73,12 @@ const icons = {
     AdminDashboardComponent,
     SingleCategoryViewComponent,
     UserComponent,
-    UserViewComponent
+    UserViewComponent,
+    ProductsStoreComponent,
+    SingleProductCardComponent,
+    ProductCategoriesViewComponent,
+    CategoriesStoreComponent,
+    StoresProductDetailComponent,
   ],
   imports: [
     BrowserModule,

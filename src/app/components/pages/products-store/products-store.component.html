@@ -1,0 +1,24 @@
+<div class="row mx-3 my-3">
+    <div class="col-md-2">
+        <app-product-categories-view></app-product-categories-view>
+    </div>
+    <div class="col-md-10">
+        <!-- show all products here -->
+        <div 
+            class="row gx-2 align-items-stretch"
+            infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="0"
+            (scrolled)="productsScrolled()"
+            >
+            <div 
+                class="col-md-4 mb-3"
+                *ngFor="let product of productsResponse?.content">
+                <app-single-product-card
+                    class="product-card"
+                    [product]="product">
+                </app-single-product-card>
+            </div>
+        </div>
+    </div>
+</div>

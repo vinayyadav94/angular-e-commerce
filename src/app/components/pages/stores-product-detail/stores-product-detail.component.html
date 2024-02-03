@@ -1,0 +1,54 @@
+<div class="container mt-4">
+    <div class="card" *ngIf="product">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5 fixed-column">
+                    <div class="image-container text-center mb-4">
+                        <img
+                            [src]="productService.getProductImageUrl(product.productId)"
+                            [alt]=""
+                            onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFn7UcnmtIPkbZ1cZbUECo_JzO2rZPAID8pA&usqp=CAU'"/>
+                    </div>
+                    <div>
+                        <button class="btn btn-warning" [disabled]="!product.stock" style="width: 250px;">
+                            ADD TO CART
+                        </button>
+                        <button 
+                            class="btn ms-2" 
+                            style="width: 250px;"
+                            [disabled]="!product.stock"
+                            [ngClass]="{
+                                'btn-success': product.stock,
+                                'btn-danger': !product.stock}">
+                            {{product.stock ? 'BUY NOW' : 'Out of stock'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-7 scrollable-column">
+                    <h3>{{product.title}}</h3>
+                    <div class="text-success fw-bold mb-1">Special price</div>
+                    <div class="mb-1">
+                        <span class="fs-3 fw-bold">₹{{product.discountedPrice}}</span>
+                        <span class=" fs-5 text-muted text-decoration-line-through ms-2">₹{{product.price}}</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="badge text-bg-success">4.3 ★</span> 33360 ratings and 4339 reviews
+                    </div>
+                    <div class="mb-3">
+                        <span 
+                            class="badge"
+                            [ngClass]="{
+                                'text-bg-success': product.stock,
+                                'text-bg-danger': !product.stock
+                                }"
+                            >{{product.stock ? 'In-stock' : 'Out of stock'}}</span>
+                    </div>
+                    <div>
+                        <p [innerHTML]="product.description"></p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
