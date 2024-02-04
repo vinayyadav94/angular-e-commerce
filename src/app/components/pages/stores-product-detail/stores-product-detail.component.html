@@ -21,6 +21,7 @@
                             class="btn ms-2" 
                             style="width: 250px;"
                             [disabled]="!product.stock"
+                            (click)="navigateToBuyNow(product)"
                             [ngClass]="{
                                 'btn-success': product.stock,
                                 'btn-danger': !product.stock}">
