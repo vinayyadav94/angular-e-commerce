@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { loginResponse } from 'src/app/models/loginResponse.model';
+import { removeLoginData } from 'src/app/store/auth/auth.action';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +11,14 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  constructor(
+    private router: Router,
+    private store: Store<{auth: loginResponse}>){}
+
   adminMenus = [
     {
       title: 'Home',
-      link: '/admin/home',
+      link: '/admin/view-products',
       icon: 'home'
     },
     {
@@ -44,5 +52,10 @@ export class DashboardComponent {
       icon: 'users'
     }
   ]
+
+  logout() {
+    this.store.dispatch(removeLoginData());
+    this.router.navigate(['/login']);
+  }
 
 }

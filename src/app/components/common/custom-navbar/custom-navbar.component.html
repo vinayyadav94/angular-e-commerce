@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
     <div class="container-fluid">
-      <a href="/home" [routerLink]="['/home']"><img class="img-fluid" src="assets/images/estore.jpeg"/></a>
-      <a class="navbar-brand" href="/home" [routerLink]="['/home']">eStore.com</a>
+      <a href="/home" [routerLink]="['/products']"><img class="img-fluid" src="assets/images/estore.jpeg"/></a>
+      <a class="navbar-brand" href="/home" [routerLink]="['/products']">eStore.com</a>
 
       <button class="navbar-toggler" 
         type="button" 
@@ -14,9 +14,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" [class.collapse]="collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse d-flex justify-content-end" [class.collapse]="collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <!-- <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/products" [routerLink]="['/products']">Home</a>
@@ -24,7 +24,7 @@
 
           <li class="nav-item">
             <a class="nav-link" href="category" [routerLink]="['/category']">Categories</a>
-          </li>
+          </li> -->
 
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,13 +38,13 @@
             </ul>
           </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" aria-disabled="true" href="/feature" [routerLink]="['/feature']">Features</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-disabled="true" href="/about" [routerLink]="['/about']">About</a>
           </li>
-        </ul>
+        </ul> -->
 
         <ul class="navbar-nav" *ngIf="!loginData?.login">
             <li class="nav-item">
@@ -56,7 +56,7 @@
         </ul>
         <ul class="navbar-nav" *ngIf="loginData?.login">
           <li class="nav-item" *ngIf="isAdmin|async">
-            <button class="nav-link" style="cursor: pointer;" routerLink="/admin">Admin Dashboard</button>
+            <button class="nav-link" style="cursor: pointer;" routerLink="/admin/view-products">Admin Dashboard</button>
         </li>
           <li class="nav-item">
             <p class="nav-link" style="cursor: pointer;" routerLink="/profile">{{loginData?.user?.name}}</p>

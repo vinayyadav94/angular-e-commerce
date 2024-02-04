@@ -8,16 +8,16 @@
                 
                   <ul class="navbar-nav flex-column" style="height: 90%;">
                     <li class="nav-item" *ngFor="let menu of adminMenus">
-                      <a class="nav-link" href="#!" [routerLink]="[menu.link]" routerLinkActive="active">
+                      <a class="nav-link" href="#!" [routerLink]="[menu.link]">
                         <i-tabler [name]="menu.icon"></i-tabler>
                         <span class="ms-1">{{menu.title}}</span>
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#!" routerLinkActive="active">
+                        <button class="nav-link" href="#!" (click)="logout()">
                           <i-tabler name="logout"></i-tabler>
                           <span class="ms-1">Logout</span>
-                      </a>
+                        </button>
                       </li>
                   </ul>
                   <ul class="navbar-nav flex-column" style="height: 10%;">
