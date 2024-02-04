@@ -21,6 +21,7 @@ import { UserComponent } from './components/pages/user/user.component';
 import { ProductsStoreComponent } from './components/pages/products-store/products-store.component';
 import { CategoriesStoreComponent } from './components/pages/categories-store/categories-store.component';
 import { StoresProductDetailComponent } from './components/pages/stores-product-detail/stores-product-detail.component';
+import { CartComponent } from './components/pages/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
   {
     path: 'product/:productId',
     component: StoresProductDetailComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    title: 'eStore: Cart'
   },
   {
     path: 'products/:categoryId/:categoryTitle',

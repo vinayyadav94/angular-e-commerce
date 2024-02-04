@@ -27,7 +27,7 @@ import { ViewUsersComponent } from './components/admin/view-users/view-users.com
 import { DashboardComponent as AdminDashboardComponent } from './components/admin/dashboard/dashboard.component';
 //third party library for using icons
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { IconHome, IconCategoryPlus, IconCategoryFilled, IconShoppingCartOff, IconShoppingCart, IconTruckDelivery, IconUsers, IconLogout } from 'angular-tabler-icons/icons';
+import { IconHome, IconCategoryPlus, IconCategoryFilled, IconShoppingCartOff, IconShoppingCart, IconTruckDelivery, IconUsers, IconLogout, IconPlus, IconMinus, IconTrash } from 'angular-tabler-icons/icons';
 import { JwtInterceptor } from './services/jwtInterceptor';
 import { SingleCategoryViewComponent } from './components/pages/single-category-view/single-category-view.component';
 import { categoryReducer } from './store/category/category.reducers';
@@ -41,6 +41,8 @@ import { SingleProductCardComponent } from './components/common/single-product-c
 import { ProductCategoriesViewComponent } from './components/common/product-categories-view/product-categories-view.component';
 import { CategoriesStoreComponent } from './components/pages/categories-store/categories-store.component';
 import { StoresProductDetailComponent } from './components/pages/stores-product-detail/stores-product-detail.component';
+import { CartComponent } from './components/pages/cart/cart.component';
+import { CartItemComponent } from './components/common/cart-item/cart-item.component';
 
 const icons = {
   IconHome,
@@ -50,7 +52,10 @@ const icons = {
   IconShoppingCart,
   IconTruckDelivery,
   IconUsers,
-  IconLogout
+  IconLogout,
+  IconPlus,
+  IconMinus,
+  IconTrash
 };
 
 @NgModule({
@@ -79,6 +84,8 @@ const icons = {
     ProductCategoriesViewComponent,
     CategoriesStoreComponent,
     StoresProductDetailComponent,
+    CartComponent,
+    CartItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,11 @@
                             onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFn7UcnmtIPkbZ1cZbUECo_JzO2rZPAID8pA&usqp=CAU'"/>
                     </div>
                     <div>
-                        <button class="btn btn-warning" [disabled]="!product.stock" style="width: 250px;">
+                        <button 
+                            class="btn btn-warning" 
+                            [disabled]="!product.stock" 
+                            style="width: 250px;"
+                            (click)="addToCart(product)">
                             ADD TO CART
                         </button>
                         <button 

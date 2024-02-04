@@ -17,6 +17,8 @@
     </p>
     <button 
         class="btn mb-2"
+        (click)="addToCart(product)"
+        [disabled]="!product.stock"
         [ngClass]="{
             'btn-primary':product.stock,
             'btn-danger':!product.stock

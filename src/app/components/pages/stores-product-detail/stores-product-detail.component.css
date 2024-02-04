@@ -13,3 +13,6 @@
     max-height: 100vh;
     overflow-y: auto;
 }
+img:hover{
+    transform: scale(1.15);
+}
