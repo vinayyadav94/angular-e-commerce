@@ -43,6 +43,7 @@ import { CategoriesStoreComponent } from './components/pages/categories-store/ca
 import { StoresProductDetailComponent } from './components/pages/stores-product-detail/stores-product-detail.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { CartItemComponent } from './components/common/cart-item/cart-item.component';
+import { cartReducer } from './store/cart/cart.reducers';
 
 const icons = {
   IconHome,
@@ -101,7 +102,8 @@ const icons = {
     HttpClientModule, 
     StoreModule.forRoot({
       auth: authReducer,
-      cat: categoryReducer
+      cat: categoryReducer,
+      cart: cartReducer
     }),
     TablerIconsModule.pick(icons),
     QuillModule.forRoot(),
