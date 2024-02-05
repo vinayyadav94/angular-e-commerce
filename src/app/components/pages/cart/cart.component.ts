@@ -7,6 +7,9 @@ import { CartService } from 'src/app/services/cart.service';
 import { Store } from '@ngrx/store';
 import { updateCart } from 'src/app/store/cart/cart.actions';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderRequest, OrderStatus, paymentStatus } from 'src/app/models/order.model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,13 +20,24 @@ export class CartComponent implements OnInit {
 
   cart?: Cart;
   user?: User;
+  orderRequest: OrderRequest = {
+    billingAddress: '',
+    billingName: '',
+    billingPhone: '',
+    cartId: '',
+    orderStatus: OrderStatus.PENDING,
+    paymentStatus: paymentStatus.PENDING,
+    userId: ''
+  }
 
   constructor(
     public cartService: CartService,
     private authService: AuthService,
     private router: Router,
     private cartStore: Store<{cart: Cart}>,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    private orderService: OrderService
     ) {}
 
   ngOnInit(): void {
@@ -45,6 +59,9 @@ export class CartComponent implements OnInit {
         next: cart=>{
           this.cart = cart;
           this.cartStore.dispatch(updateCart({cart: this.cart}));
+          this.orderRequest.userId = this.user?.userId as string;
+          this.orderRequest.cartId = this.cart.cartId;
+          console.log(this.orderRequest);
         },
         error: err=>{
           console.log(err); 
@@ -111,6 +128,40 @@ export class CartComponent implements OnInit {
         }
       },
       error: err=>{
+        console.log(err);
+      }
+    })
+  }
+
+  openOrderPlaceModal(content: any){
+    this.modalService.open(content, {
+      size: 'lg'
+    })
+  }
+
+  createOrder(event: Event){
+    event.preventDefault();
+    if(this.orderRequest.billingName.trim() === ''){
+      this.toastr.error('Billing name is required!');
+      return;
+    }
+    if(this.orderRequest.billingPhone.trim() === ''){
+      this.toastr.error('Billing phone is required!');
+      return;
+    }
+    if(this.orderRequest.billingAddress.trim() === ''){
+      this.toastr.error('Billing address is required!');
+      return;
+    }
+    this.orderService.createOrder(this.orderRequest).subscribe({
+      next: (order: any)=>{
+        this.toastr.success(`Your order is successfully created with order id ${order.orderId}`);
+        this.toastr.info(`Proceeding to payment page...`);
+        this.modalService.dismissAll();
+        this.loadCart();
+      },
+      error: err=>{
+        this.toastr.error(`something went wrong while placing order`);
         console.log(err);
       }
     })
