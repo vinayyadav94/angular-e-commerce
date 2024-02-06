@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart, CartItem } from '../../../models/cart.model';
 import { User } from 'src/app/models/user.model';
@@ -10,13 +10,14 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderRequest, OrderStatus, paymentStatus } from 'src/app/models/orderRequest.model';
 import { OrderService } from 'src/app/services/order.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   cart?: Cart;
   user?: User;
@@ -29,6 +30,7 @@ export class CartComponent implements OnInit {
     paymentStatus: paymentStatus.PENDING,
     userId: ''
   }
+  public userSubscription?: Subscription;
 
   constructor(
     public cartService: CartService,
@@ -41,7 +43,7 @@ export class CartComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.authService.getLoggedInData().subscribe({
+    this.userSubscription = this.authService.getLoggedInData().subscribe({
       next: userData=>{
         if(userData.login){
           this.user = userData.user;
@@ -165,6 +167,10 @@ export class CartComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription?.unsubscribe();
   }
 
 }
