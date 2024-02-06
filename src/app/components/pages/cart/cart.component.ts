@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { updateCart } from 'src/app/store/cart/cart.actions';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OrderRequest, OrderStatus, paymentStatus } from 'src/app/models/order.model';
+import { OrderRequest, OrderStatus, paymentStatus } from 'src/app/models/orderRequest.model';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({

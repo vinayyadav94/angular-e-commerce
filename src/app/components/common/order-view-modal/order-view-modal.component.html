@@ -1,0 +1,90 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Order Details:</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="container-fluid" *ngIf="order">
+
+            <div class="responsive-table">
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">Billing Name:</td>
+                            <td>{{order.billingName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Billing Phone:</td>
+                            <td>{{order.billingPhone}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Billing Address:</td>
+                            <td>{{order.billingAddress}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Ordered Date:</td>
+                            <td>{{order.orderedDate | date:"dd/mm/yyyy"}}</td>
+                        </tr>
+                        <tr
+                            [ngClass]="{
+                                'table-success': order.orderStatus == 'PROCESSED',
+                                'table-danger': order.orderStatus !== 'PROCESSED'
+                                }"
+                            >
+                            <td class="fw-bold">Ordered Status:</td>
+                            <td>{{order.orderStatus}}</td>
+                        </tr>
+                        <tr
+                            [ngClass]="{
+                                'table-success': order.paymentStatus == 'PAID',
+                                'table-danger': order.paymentStatus == 'PENDING'
+                                }"
+                            >
+                            <td class="fw-bold">Payment Status:</td>
+                            <td>{{order.paymentStatus}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Order Amount:</td>
+                            <td>{{order.orderAmount}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Delivered Date:</td>
+                            <td>{{order.deliveredDate ? (order.deliveredDate | date:"dd/mm/yyyy") : 'NOT DELIVERED YET'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="list-group">
+                    <div class="list-group-item" *ngFor="let item of order.orderItems">
+                        <div class="row">
+                            <div class="col-md-2 text-center">
+                                <img class="product-image" [src]="productService.getProductImageUrl(item.product.productId)"/>
+                            </div>
+                            <div class="col-md-10">
+                                <p class="fs-6 fw-bold">{{item.product.title}}</p>
+                        <div class="row">
+                            <div class="col">
+                                <p>Quantity: {{item.quantity}}</p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    Price: <span class="fs-6">₹{{item.product.discountedPrice}}</span>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    Total Price: <span class="fs-6">₹{{item.totalPrice}}</span>
+                                </p>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+	</div>
+</ng-template>
