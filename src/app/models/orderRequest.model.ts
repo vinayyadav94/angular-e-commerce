@@ -9,9 +9,8 @@ export interface OrderRequest{
   }
 
 export enum OrderStatus{
-    PENDING = 'PENDING', 
-    PROCESSING = 'PROCESSING', 
-    PROCESSED = 'PROCESSED', 
+    PENDING = 'PENDING',
+    CONFIRMED = 'CONFIRMED',
     DISPATCHED = 'DISPATCHED', 
     DELIVERED = 'DELIVERED'
 }

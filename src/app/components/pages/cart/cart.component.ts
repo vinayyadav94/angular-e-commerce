@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderRequest, OrderStatus, paymentStatus } from 'src/app/models/orderRequest.model';
 import { OrderService } from 'src/app/services/order.service';
 import { Subscription } from 'rxjs';
+import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
   selector: 'app-cart',
@@ -39,7 +40,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private cartStore: Store<{cart: Cart}>,
     private toastr: ToastrService,
     private modalService: NgbModal,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private paymentService: PaymentService
     ) {}
 
   ngOnInit(): void {
@@ -161,6 +163,44 @@ export class CartComponent implements OnInit, OnDestroy {
         this.toastr.info(`Proceeding to payment page...`);
         this.modalService.dismissAll();
         this.loadCart();
+
+        //initiate payment
+        this.paymentService.initiatePayment(order.orderId).subscribe({
+          next: (data: any) => {
+            console.log(data);
+            const subscription = this.paymentService.payWithRazorPay({
+              amount: data.amount, 
+              razorpayOrderId: data.razorpayOrderId,
+              username: order.billingName,
+              email: order.user.email,
+              contact: order.billingPhone
+          })
+          .subscribe({
+            next: data=>{
+              console.log(data);
+              subscription.unsubscribe();
+              
+              //server api call for payment capture
+              this.paymentService.captureAndVerifyPayment(order.orderId, data).subscribe({
+                next: (data: any) => {
+                  console.log(data);
+                  this.toastr.success(data.message);
+                  this.router.navigate(['/my-orders']);
+                },
+                error: err=>{
+                  console.log(err);
+                  this.toastr.error('Error in capturing payment!')
+                }
+              })
+            },
+            error: err=>{
+              console.log(err);
+              this.toastr.error('Payment failed, you can retry making payment!')
+              subscription.unsubscribe();
+            }
+          })
+          }
+        })
       },
       error: err=>{
         this.toastr.error(`something went wrong while placing order`);

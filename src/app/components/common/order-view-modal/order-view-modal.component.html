@@ -27,8 +27,8 @@
                         </tr>
                         <tr
                             [ngClass]="{
-                                'table-success': order.orderStatus == 'PROCESSED',
-                                'table-danger': order.orderStatus !== 'PROCESSED'
+                                'table-success': order.orderStatus == 'CONFIRMED',
+                                'table-danger': order.orderStatus !== 'CONFIRMED'
                                 }"
                             >
                             <td class="fw-bold">Ordered Status:</td>
@@ -37,11 +37,13 @@
                         <tr
                             [ngClass]="{
                                 'table-success': order.paymentStatus == 'PAID',
-                                'table-danger': order.paymentStatus == 'PENDING'
+                                'table-danger': order.paymentStatus !== 'PAID'
                                 }"
                             >
                             <td class="fw-bold">Payment Status:</td>
-                            <td>{{order.paymentStatus}}</td>
+                            <td>
+                                {{order.paymentStatus}}
+                            </td>
                         </tr>
                         <tr>
                             <td class="fw-bold">Order Amount:</td>
@@ -103,6 +105,7 @@
 	</div>
 	<div class="modal-footer">
         <button *ngIf="isAdmin" type="button" class="btn btn-outline-primary" (click)="updateOrder($event)">{{isUpdate? 'View Order' : 'Update Order'}}</button>
+        <button *ngIf="order?.paymentStatus !== 'PAID'" type="button" class="btn btn-success" (click)="payForOrder(order)">Pay Now</button>
 		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
 	</div>
 </ng-template>

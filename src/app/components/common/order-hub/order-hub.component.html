@@ -23,8 +23,8 @@
                                     <span 
                                         class="fw-bold badge"
                                         [ngClass]="{
-                                            'text-bg-success': order.orderStatus == 'PROCESSED',
-                                            'text-bg-danger': order.orderStatus !== 'PROCESSED'
+                                            'text-bg-success': order.orderStatus == 'CONFIRMED',
+                                            'text-bg-danger': order.orderStatus !== 'CONFIRMED'
                                             }">
                                         {{order.orderStatus}}
                                     </span>
@@ -36,7 +36,7 @@
                                         class="fw-bold badge"
                                         [ngClass]="{
                                             'text-bg-success': order.paymentStatus == 'PAID',
-                                            'text-bg-danger': order.paymentStatus == 'PENDING'
+                                            'text-bg-danger': order.paymentStatus !== 'PAID'
                                             }">
                                         {{order.paymentStatus}}
                                     </span>
