@@ -22,6 +22,7 @@ import { ProductsStoreComponent } from './components/pages/products-store/produc
 import { CategoriesStoreComponent } from './components/pages/categories-store/categories-store.component';
 import { StoresProductDetailComponent } from './components/pages/stores-product-detail/stores-product-detail.component';
 import { CartComponent } from './components/pages/cart/cart.component';
+import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,11 @@ const routes: Routes = [
     path: 'profile',
     component: UserComponent,
     canActivate: [normalUserGuard]
+  },
+  {
+    path: 'my-orders',
+    component: MyOrdersComponent,
+    title: 'eStore: My Orders'
   },
   {
     path: 'admin',

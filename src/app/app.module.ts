@@ -45,6 +45,8 @@ import { CartComponent } from './components/pages/cart/cart.component';
 import { CartItemComponent } from './components/common/cart-item/cart-item.component';
 import { cartReducer } from './store/cart/cart.reducers';
 import { OrderViewModalComponent } from './components/common/order-view-modal/order-view-modal.component';
+import { OrderHubComponent } from './components/common/order-hub/order-hub.component';
+import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 
 const icons = {
   IconHome,
@@ -89,6 +91,8 @@ const icons = {
     CartComponent,
     CartItemComponent,
     OrderViewModalComponent,
+    OrderHubComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

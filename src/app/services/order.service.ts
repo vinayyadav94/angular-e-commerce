@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OrderRequest } from '../models/orderRequest.model';
-import { OrderResponse } from '../models/order.model';
+import { Order, OrderResponse } from '../models/order.model';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -27,6 +27,6 @@ export class OrderService {
   }
 
   getOrderOfUser(userId: string){
-    return this.http.get(`${environment.baseUrl}/orders/users/${userId}`);
+    return this.http.get<Order[]>(`${environment.baseUrl}/orders/users/${userId}`);
   }
 }

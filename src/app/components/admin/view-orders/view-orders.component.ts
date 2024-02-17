@@ -25,8 +25,4 @@ export class ViewOrdersComponent implements OnInit {
       })
     }
 
-    //open view order modal
-    openModal(order: Order){
-      this.helper.emitOrderEvent(order);
-    }
 }

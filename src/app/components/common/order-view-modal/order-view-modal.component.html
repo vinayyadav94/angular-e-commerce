@@ -5,8 +5,8 @@
 	</div>
 	<div class="modal-body">
 		<div class="container-fluid" *ngIf="order">
-
-            <div class="responsive-table">
+            <!-- view order -->
+            <div class="responsive-table" *ngIf="!isUpdate">
                 <table class="table table-hover table-bordered">
                     <tbody>
                         <tr>
@@ -81,10 +81,28 @@
                     </div>
                 </div>
             </div>
-
+            <!-- update order -->
+            <div *ngIf="isUpdate">
+                <form action="">
+                    <div class="mt-2">
+                        <label for="order_status" class="mb-1">Change order status</label>
+                        <select 
+                            name="orderStatus" 
+                            id="orderStatus"
+                            class="form-control"
+                            [(ngModel)]="order.orderStatus"
+                            [compareWith]="compareFn">
+                            <option [ngValue]="os" *ngFor="let os of orderStatus | keyvalue">
+                                {{os.value}}
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
         </div>
 	</div>
 	<div class="modal-footer">
+        <button *ngIf="isAdmin" type="button" class="btn btn-outline-primary" (click)="updateOrder($event)">{{isUpdate? 'View Order' : 'Update Order'}}</button>
 		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
 	</div>
 </ng-template>
